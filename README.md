@@ -59,6 +59,9 @@ Main Features of the Project:
     - Access in main.c and pring using LOG_INF: Done
     Note: Only Custom App Node in Overlay will change the threads like sample_interval, enable_ble.
 
+    Comparison: Kconfig file is more flexible as configuration can be changed in menuconfig, while
+    chaning config in Customized App Node, syntax and format has to taken cared.
+
 8) Logging:
     - LOG_INF is used of normal logging and LOG_ERR for errorL: Done
 

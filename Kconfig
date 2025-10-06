@@ -6,7 +6,7 @@ menu "FW Challenge Options"
 
 config APP_SAMPLE_INTERVAL_MS
     int "Sample Interval (ms)"
-    default 2000
+    default 1000
     help
       This option provide internal ms.
 
