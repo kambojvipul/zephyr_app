@@ -65,7 +65,11 @@ Main Features of the Project:
 8) Logging:
     - LOG_INF is used of normal logging and LOG_ERR for errorL: Done
 
-9) The program is error free, buildable and running on Esp32 Borad. The commands are as follows:
+9) The program is error free, buildable and running on Esp32 Borad. The demonstration video of running project on youtube is as follows:
+
+    https://youtu.be/8TXV3R41snU
+   
+11) The commands are as follows:
 
   
 
