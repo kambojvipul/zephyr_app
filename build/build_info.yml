@@ -1,0 +1,62 @@
+cmake:
+  application:
+    configuration-dir: '/home/vipul/zephyrproject/zephyr/apps/01_blink'
+    source-dir: '/home/vipul/zephyrproject/zephyr/apps/01_blink'
+  board:
+    name: 'esp32_devkitc'
+    path:
+     - '/home/vipul/zephyrproject/zephyr/boards/espressif/esp32_devkitc'
+    qualifiers: 'esp32/procpu'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/vipul/zephyrproject/zephyr/dts/bindings'
+    files:
+     - '/home/vipul/zephyrproject/zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts'
+     - 'boards/esp32_devkitc_wroom.overlay'
+    include-dirs:
+     - '/home/vipul/zephyrproject/modules/hal/ambiq/dts'
+     - '/home/vipul/zephyrproject/modules/hal/atmel/include'
+     - '/home/vipul/zephyrproject/modules/hal/bouffalolab/include'
+     - '/home/vipul/zephyrproject/modules/hal/bouffalolab/include/zephyr'
+     - '/home/vipul/zephyrproject/modules/hal/gigadevice/include'
+     - '/home/vipul/zephyrproject/modules/hal/microchip/include'
+     - '/home/vipul/zephyrproject/modules/hal/microchip/dts'
+     - '/home/vipul/zephyrproject/modules/hal/nuvoton/dts'
+     - '/home/vipul/zephyrproject/modules/hal/nxp/dts'
+     - '/home/vipul/zephyrproject/modules/hal/stm32/dts'
+     - '/home/vipul/zephyrproject/modules/hal/ti/dts'
+     - '/home/vipul/zephyrproject/zephyr/include'
+     - '/home/vipul/zephyrproject/zephyr/include/zephyr'
+     - '/home/vipul/zephyrproject/zephyr/dts/common'
+     - '/home/vipul/zephyrproject/zephyr/dts/vendor'
+     - '/home/vipul/zephyrproject/zephyr/dts/rx'
+     - '/home/vipul/zephyrproject/zephyr/dts/x86'
+     - '/home/vipul/zephyrproject/zephyr/dts/xtensa'
+     - '/home/vipul/zephyrproject/zephyr/dts/sparc'
+     - '/home/vipul/zephyrproject/zephyr/dts/riscv'
+     - '/home/vipul/zephyrproject/zephyr/dts/posix'
+     - '/home/vipul/zephyrproject/zephyr/dts/arm64'
+     - '/home/vipul/zephyrproject/zephyr/dts/arm'
+     - '/home/vipul/zephyrproject/zephyr/dts/arc'
+     - '/home/vipul/zephyrproject/zephyr/dts'
+    user-files:
+     - 'boards/esp32_devkitc_wroom.overlay'
+  kconfig:
+    files:
+     - '/home/vipul/zephyrproject/zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu_defconfig'
+     - '/home/vipul/zephyrproject/zephyr/apps/01_blink/prj.conf'
+     - '/home/vipul/zephyrproject/zephyr/apps/01_blink/build/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/vipul/zephyrproject/zephyr/apps/01_blink/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/home/vipul/zephyr-sdk-0.17.4'
+  zephyr:
+    version: '4.2.99'
+    zephyr-base: '/home/vipul/zephyrproject/zephyr'
+version: '0.1.0'
+west:
+  command: '/home/vipul/zephyrproject/.venv/bin/west build -p always -b esp32_devkitc_wroom/esp32/procpu -- -DDTC_OVERLAY_FILE=boards/esp32_devkitc_wroom.overlay -DCO'
+  topdir: '/home/vipul/zephyrproject'
+  version: '1.5.0'

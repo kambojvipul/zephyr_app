@@ -1,0 +1,12 @@
+compatible: "app,config"
+description: Custom app configuration node
+properties:
+  sample-interval-ms:
+    type: int
+    required: true
+  voltage-threshold-mv:
+    type: int
+    required: true
+  enable-ble:
+    type: boolean
+    required: false

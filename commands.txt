@@ -1,0 +1,26 @@
+
+        Board: xiao_esp32c3
+
+        Note: the path of project in my computer as follows: /home/vipul/zephyrproject/zephyr/apps/zephyr_app
+
+        0) Go to Main Zephyr Folder and activate the virtual environment created during installation:
+        cd /home/vipul/zephyrproject/zephyr
+        source ~/zephyrproject/.venv/bin/activate
+
+        1) Run Menuconfig: to run customized Kconfig
+        west build -p always -b xiao_esp32c3 --sysbuild apps/zephyr_app -t menuconfig -- -DCONF_FILE="boards/xiao_esp32c3.conf"
+
+        2) build the project: (Kconfig will be lost)
+        west build -p always -b xiao_esp32c3 --sysbuild apps/zephyr_app -- -DCONF_FILE="boards/xiao_esp32c3.conf"
+        
+        2A) Without build clean (it restores the Kconfig)
+        west build -b xiao_esp32c3 --sysbuild apps/zephyr_app -- -DCONF_FILE="boards/xiao_esp32c3.conf"
+
+        3) Provide Permisson to /dev/ttyACM0 to access esp32c3
+        sudo chmod 666 /dev/ttyACM0
+
+        4) Flash the project
+        west flash
+
+        5) Monitor and Logging
+        west espressif monitor

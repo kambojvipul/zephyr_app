@@ -1,0 +1,929 @@
+/dts-v1/;
+
+/* node '/' defined in zephyr/dts/common/skeleton.dtsi:9 */
+/ {
+	#address-cells = < 0x1 >;                 /* in zephyr/dts/common/skeleton.dtsi:10 */
+	#size-cells = < 0x1 >;                    /* in zephyr/dts/common/skeleton.dtsi:11 */
+	model = "Espressif ESP32-DevkitC PROCPU"; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:15 */
+	compatible = "espressif,esp32";           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:16 */
+
+	/* node '/chosen' defined in zephyr/dts/common/skeleton.dtsi:13 */
+	chosen {
+		zephyr,canbus = &twai;                    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:20 */
+		zephyr,entropy = &trng0;                  /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:21 */
+		zephyr,flash-controller = &flash;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:22 */
+		zephyr,sram = &sram1;                     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:36 */
+		zephyr,console = &uart0;                  /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:37 */
+		zephyr,shell-uart = &uart0;               /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:38 */
+		zephyr,flash = &flash0;                   /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:39 */
+		zephyr,code-partition = &slot0_partition; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:40 */
+		zephyr,bt-hci = &esp32_bt_hci;            /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:41 */
+	};
+
+	/* node '/aliases' defined in zephyr/dts/common/skeleton.dtsi:15 */
+	aliases {
+		uart-0 = &uart0;       /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:19 */
+		i2c-0 = &i2c0;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:20 */
+		sw0 = &button0;        /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:21 */
+		watchdog0 = &wdt0;     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:22 */
+		my-led = &led0;        /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:3 */
+		my-button = &button_1; /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:4 */
+	};
+
+	/* node '/soc' defined in zephyr/dts/xtensa/xtensa.dtsi:10 */
+	soc {
+		#address-cells = < 0x1 >;  /* in zephyr/dts/xtensa/xtensa.dtsi:11 */
+		#size-cells = < 0x1 >;     /* in zephyr/dts/xtensa/xtensa.dtsi:12 */
+		compatible = "simple-bus"; /* in zephyr/dts/xtensa/xtensa.dtsi:13 */
+		ranges;                    /* in zephyr/dts/xtensa/xtensa.dtsi:14 */
+
+		/* node '/soc/memory@40070000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:106 */
+		sram0: memory@40070000 {
+			compatible = "zephyr,memory-region",
+			             "mmio-sram";            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:107 */
+			reg = < 0x40070000 0x30000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:108 */
+			zephyr,memory-region = "SRAM0";      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:109 */
+		};
+
+		/* node '/soc/memory@3ffe0000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:112 */
+		sram1: memory@3ffe0000 {
+			compatible = "zephyr,memory-region",
+			             "mmio-sram";            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:113 */
+			reg = < 0x3ffe0000 0x20000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:114 */
+			zephyr,memory-region = "SRAM1";      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:115 */
+		};
+
+		/* node '/soc/memory@3ffae000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:118 */
+		sram2: memory@3ffae000 {
+			compatible = "zephyr,memory-region",
+			             "mmio-sram";            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:119 */
+			reg = < 0x3ffae000 0x32000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:120 */
+			zephyr,memory-region = "SRAM2";      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:121 */
+		};
+
+		/* node '/soc/dcache0@3f400000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:124 */
+		dcache0: dcache0@3f400000 {
+			compatible = "zephyr,memory-region",
+			             "mmio-sram";            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:125 */
+			reg = < 0x3f400000 0x400000 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:126 */
+			zephyr,memory-region = "DCACHE0";    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:127 */
+		};
+
+		/* node '/soc/dcache1@3f800000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:130 */
+		dcache1: dcache1@3f800000 {
+			compatible = "zephyr,memory-region",
+			             "mmio-sram";            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:131 */
+			reg = < 0x3f800000 0x400000 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:132 */
+			zephyr,memory-region = "DCACHE1";    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:133 */
+
+			/* node '/soc/dcache1@3f800000/psram0' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:135 */
+			psram0: psram0 {
+				compatible = "espressif,esp32-psram"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:136 */
+				size = < 0x800000 >;                  /* in zephyr/dts/xtensa/espressif/esp32/esp32_wrover_e_n4r8.dtsi:26 */
+			};
+		};
+
+		/* node '/soc/icache0@400d0000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:141 */
+		icache0: icache0@400d0000 {
+			compatible = "zephyr,memory-region",
+			             "mmio-sram";            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:142 */
+			reg = < 0x400d0000 0xb30000 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:143 */
+			zephyr,memory-region = "ICACHE0";    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:144 */
+		};
+
+		/* node '/soc/memory@3ffe5230' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:147 */
+		ipmmem0: memory@3ffe5230 {
+			compatible = "mmio-sram";   /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:148 */
+			reg = < 0x3ffe5230 0x400 >; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:149 */
+			phandle = < 0x1 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:161 */
+		};
+
+		/* node '/soc/memory@3ffe5630' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:152 */
+		shm0: memory@3ffe5630 {
+			compatible = "mmio-sram";    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:153 */
+			reg = < 0x3ffe5630 0x4000 >; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:154 */
+		};
+
+		/* node '/soc/ipm@3ffe9630' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:157 */
+		ipm0: ipm@3ffe9630 {
+			compatible = "espressif,esp32-ipm"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:158 */
+			reg = < 0x3ffe9630 0x8 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:159 */
+			status = "disabled";                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:160 */
+			shared-memory = < &ipmmem0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:161 */
+			shared-memory-size = < 0x400 >;     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:162 */
+			interrupts = < 0x18 0x0 0x0 >,
+			             < 0x19 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:163 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:165 */
+		};
+
+		/* node '/soc/mbox@3ffe9638' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:168 */
+		mbox0: mbox@3ffe9638 {
+			compatible = "espressif,mbox-esp32"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:169 */
+			reg = < 0x3ffe9638 0x8 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:170 */
+			status = "disabled";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:171 */
+			shared-memory = < &ipmmem0 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:172 */
+			shared-memory-size = < 0x400 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:173 */
+			interrupts = < 0x18 0x0 0x0 >,
+			             < 0x19 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:174 */
+			interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:176 */
+			#mbox-cells = < 0x1 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:177 */
+		};
+
+		/* node '/soc/interrupt-controller@3ff00104' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:180 */
+		intc: interrupt-controller@3ff00104 {
+			#interrupt-cells = < 0x3 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:181 */
+			#address-cells = < 0x0 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:182 */
+			compatible = "espressif,esp32-intc"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:183 */
+			interrupt-controller;                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:184 */
+			reg = < 0x3ff00104 0x114 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:185 */
+			status = "okay";                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:186 */
+			phandle = < 0x2 >;                   /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:165 */
+		};
+
+		/* node '/soc/rtc_timer@3ff48004' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:189 */
+		rtc_timer: rtc_timer@3ff48004 {
+			reg = < 0x3ff48004 0xc >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:190 */
+			compatible = "espressif,esp32-rtc-timer"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:191 */
+			clocks = < &clock 0x22 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:192 */
+			interrupts = < 0x2e 0x0 0x0 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:193 */
+			interrupt-parent = < &intc >;             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:194 */
+			status = "okay";                          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:195 */
+		};
+
+		/* node '/soc/flash-controller@3ff42000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:198 */
+		flash: flash-controller@3ff42000 {
+			compatible = "espressif,esp32-flash-controller"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:199 */
+			reg = < 0x3ff42000 0x1000 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:200 */
+			#address-cells = < 0x1 >;                        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:201 */
+			#size-cells = < 0x1 >;                           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:202 */
+
+			/* node '/soc/flash-controller@3ff42000/flash@0' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:204 */
+			flash0: flash@0 {
+				compatible = "soc-nv-flash";   /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:205 */
+				erase-block-size = < 0x1000 >; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:206 */
+				write-block-size = < 0x4 >;    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:207 */
+				reg = < 0x0 0x400000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_wrover_e_n4r8.dtsi:21 */
+
+				/* node '/soc/flash-controller@3ff42000/flash@0/partitions' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:8 */
+				partitions {
+					compatible = "fixed-partitions"; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:9 */
+					#address-cells = < 0x1 >;        /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:10 */
+					#size-cells = < 0x1 >;           /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:11 */
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@1000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:13 */
+					boot_partition: partition@1000 {
+						label = "mcuboot";       /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:14 */
+						reg = < 0x1000 0xf000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:15 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@10000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:18 */
+					sys_partition: partition@10000 {
+						label = "sys";             /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:19 */
+						reg = < 0x10000 0x10000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:20 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@20000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:23 */
+					slot0_partition: partition@20000 {
+						label = "image-0";          /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:24 */
+						reg = < 0x20000 0x150000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:25 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@170000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:28 */
+					slot1_partition: partition@170000 {
+						label = "image-1";           /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:29 */
+						reg = < 0x170000 0x150000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:30 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@2c0000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:33 */
+					slot0_appcpu_partition: partition@2c0000 {
+						label = "image-0-appcpu";   /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:34 */
+						reg = < 0x2c0000 0x70000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:35 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@330000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:38 */
+					slot1_appcpu_partition: partition@330000 {
+						label = "image-1-appcpu";   /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:39 */
+						reg = < 0x330000 0x70000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:40 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@3a0000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:43 */
+					slot0_lpcore_partition: partition@3a0000 {
+						label = "image-0-lpcore";  /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:44 */
+						reg = < 0x3a0000 0x8000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:45 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@3a8000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:48 */
+					slot1_lpcore_partition: partition@3a8000 {
+						label = "image-1-lpcore";  /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:49 */
+						reg = < 0x3a8000 0x8000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:50 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@3b0000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:53 */
+					storage_partition: partition@3b0000 {
+						label = "storage";          /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:54 */
+						reg = < 0x3b0000 0x30000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:55 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@3e0000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:58 */
+					scratch_partition: partition@3e0000 {
+						label = "image-scratch";    /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:59 */
+						reg = < 0x3e0000 0x1f000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:60 */
+					};
+
+					/* node '/soc/flash-controller@3ff42000/flash@0/partitions/partition@3ff000' defined in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:63 */
+					coredump_partition: partition@3ff000 {
+						label = "coredump";        /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:64 */
+						reg = < 0x3ff000 0x1000 >; /* in zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi:65 */
+					};
+				};
+			};
+		};
+
+		/* node '/soc/ipi@3f4c0058' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:212 */
+		ipi0: ipi@3f4c0058 {
+			compatible = "espressif,crosscore-interrupt"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:213 */
+			reg = < 0x3f4c0058 0x4 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:214 */
+			interrupts = < 0x18 0x0 0x0 >;                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:215 */
+			interrupt-parent = < &intc >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:216 */
+		};
+
+		/* node '/soc/ipi@3f4c005c' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:219 */
+		ipi1: ipi@3f4c005c {
+			compatible = "espressif,crosscore-interrupt"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:220 */
+			reg = < 0x3f4c005c 0x4 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:221 */
+			interrupts = < 0x19 0x0 0x0 >;                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:222 */
+			interrupt-parent = < &intc >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:223 */
+		};
+
+		/* node '/soc/uart@3ff40000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:226 */
+		uart0: uart@3ff40000 {
+			compatible = "espressif,esp32-uart"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:227 */
+			reg = < 0x3ff40000 0x400 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:228 */
+			interrupts = < 0x22 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:229 */
+			interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:230 */
+			clocks = < &clock 0x1 >;             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:231 */
+			status = "okay";                     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:46 */
+			current-speed = < 0x1c200 >;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:47 */
+			pinctrl-0 = < &uart0_default >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:48 */
+			pinctrl-names = "default";           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:49 */
+		};
+
+		/* node '/soc/uart@3ff50000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:235 */
+		uart1: uart@3ff50000 {
+			compatible = "espressif,esp32-uart"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:236 */
+			reg = < 0x3ff50000 0x400 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:237 */
+			interrupts = < 0x23 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:238 */
+			interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:239 */
+			clocks = < &clock 0x2 >;             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:240 */
+			status = "disabled";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:241 */
+			current-speed = < 0x1c200 >;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:53 */
+			pinctrl-0 = < &uart1_default >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:54 */
+			pinctrl-names = "default";           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:55 */
+		};
+
+		/* node '/soc/uart@3ff6e000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:244 */
+		uart2: uart@3ff6e000 {
+			compatible = "espressif,esp32-uart"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:245 */
+			reg = < 0x3ff6e000 0x400 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:246 */
+			interrupts = < 0x24 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:247 */
+			interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:248 */
+			clocks = < &clock 0x3 >;             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:249 */
+			status = "disabled";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:250 */
+			current-speed = < 0x1c200 >;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:59 */
+			pinctrl-0 = < &uart2_default >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:60 */
+			pinctrl-names = "default";           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:61 */
+		};
+
+		/* node '/soc/pcnt@3ff57000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:253 */
+		pcnt: pcnt@3ff57000 {
+			compatible = "espressif,esp32-pcnt"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:254 */
+			reg = < 0x3ff57000 0x1000 >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:255 */
+			interrupts = < 0x30 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:256 */
+			interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:257 */
+			clocks = < &clock 0xf >;             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:258 */
+			status = "disabled";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:259 */
+		};
+
+		/* node '/soc/ledc@3ff59000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:262 */
+		ledc0: ledc@3ff59000 {
+			compatible = "espressif,esp32-ledc"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:263 */
+			#pwm-cells = < 0x3 >;                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:264 */
+			reg = < 0x3ff59000 0x800 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:265 */
+			clocks = < &clock 0x0 >;             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:266 */
+			status = "disabled";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:267 */
+		};
+
+		/* node '/soc/mcpwm@3ff5e000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:270 */
+		mcpwm0: mcpwm@3ff5e000 {
+			compatible = "espressif,esp32-mcpwm"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:271 */
+			reg = < 0x3ff5e000 0x1000 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:272 */
+			interrupts = < 0x27 0x0 0x0 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:273 */
+			interrupt-parent = < &intc >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:274 */
+			clocks = < &clock 0xa >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:275 */
+			#pwm-cells = < 0x3 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:276 */
+			status = "disabled";                  /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:277 */
+		};
+
+		/* node '/soc/mcpwm@3ff6c000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:280 */
+		mcpwm1: mcpwm@3ff6c000 {
+			compatible = "espressif,esp32-mcpwm"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:281 */
+			reg = < 0x3ff6c000 0x1000 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:282 */
+			interrupts = < 0x28 0x0 0x0 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:283 */
+			interrupt-parent = < &intc >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:284 */
+			clocks = < &clock 0xb >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:285 */
+			#pwm-cells = < 0x3 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:286 */
+			status = "disabled";                  /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:287 */
+		};
+
+		/* node '/soc/gpio' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:290 */
+		gpio: gpio {
+			compatible = "simple-bus";                                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:291 */
+			gpio-map-mask = < 0xffffffe0 0xffffffc0 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:292 */
+			gpio-map-pass-thru = < 0x1f 0x3f >;                            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:293 */
+			gpio-map = < 0x0 0x0 &gpio0 0x0 0x0 0x20 0x0 &gpio1 0x0 0x0 >; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:294 */
+			#gpio-cells = < 0x2 >;                                         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:296 */
+			#address-cells = < 0x1 >;                                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:297 */
+			#size-cells = < 0x1 >;                                         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:298 */
+			ranges;                                                        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:299 */
+
+			/* node '/soc/gpio/gpio@3ff44000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:301 */
+			gpio0: gpio@3ff44000 {
+				compatible = "espressif,esp32-gpio"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:302 */
+				gpio-controller;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:303 */
+				#gpio-cells = < 0x2 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:304 */
+				reg = < 0x3ff44000 0x800 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:305 */
+				interrupts = < 0x16 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:306 */
+				interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:307 */
+				ngpios = < 0x20 >;                   /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:313 */
+				gpio-reserved-ranges = < 0x6 0x6 >,
+				                       < 0x10 0x2 >,
+				                       < 0x14 0x1 >,
+				                       < 0x18 0x1 >,
+				                       < 0x1c 0x4 >; /* in zephyr/dts/xtensa/espressif/esp32/esp32_wrover_e_n4r8.dtsi:11 */
+				status = "okay";                     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:65 */
+				phandle = < 0x7 >;                   /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:294 */
+			};
+
+			/* node '/soc/gpio/gpio@3ff44800' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:316 */
+			gpio1: gpio@3ff44800 {
+				compatible = "espressif,esp32-gpio"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:317 */
+				gpio-controller;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:318 */
+				#gpio-cells = < 0x2 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:319 */
+				reg = < 0x3ff44800 0x800 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:320 */
+				interrupts = < 0x16 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:321 */
+				interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:322 */
+				ngpios = < 0x8 >;                    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:323 */
+				gpio-reserved-ranges = < 0x5 0x2 >;  /* in zephyr/dts/xtensa/espressif/esp32/esp32_wrover_e_n4r8.dtsi:16 */
+				status = "okay";                     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:69 */
+				phandle = < 0x8 >;                   /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:294 */
+			};
+		};
+
+		/* node '/soc/touch@3ff48858' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:327 */
+		touch: touch@3ff48858 {
+			compatible = "espressif,esp32-touch"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:328 */
+			reg = < 0x3ff48858 0x38 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:329 */
+			interrupts = < 0x2e 0x0 0x0 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:330 */
+			interrupt-parent = < &intc >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:331 */
+			status = "disabled";                  /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:332 */
+			debounce-interval-ms = < 0x1e >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:73 */
+			href-microvolt = < 0x2932e0 >;        /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:74 */
+			lref-microvolt = < 0x7a120 >;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:75 */
+			href-atten-microvolt = < 0xf4240 >;   /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:76 */
+			filter-mode = < 0x2 >;                /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:77 */
+			filter-debounce-cnt = < 0x1 >;        /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:78 */
+			filter-noise-thr = < 0x0 >;           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:79 */
+			filter-jitter-step = < 0x4 >;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:80 */
+			filter-smooth-level = < 0x1 >;        /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:81 */
+		};
+
+		/* node '/soc/i2c@3ff53000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:335 */
+		i2c0: i2c@3ff53000 {
+			compatible = "espressif,esp32-i2c"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:336 */
+			#address-cells = < 0x1 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:337 */
+			#size-cells = < 0x0 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:338 */
+			reg = < 0x3ff53000 0x1000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:339 */
+			interrupts = < 0x31 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:340 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:341 */
+			clocks = < &clock 0x4 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:342 */
+			status = "okay";                    /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:85 */
+			clock-frequency = < 0x186a0 >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:86 */
+			sda-gpios = < &gpio0 0x15 0x6 >;    /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:87 */
+			scl-gpios = < &gpio0 0x16 0x6 >;    /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:88 */
+			pinctrl-0 = < &i2c0_default >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:89 */
+			pinctrl-names = "default";          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:90 */
+		};
+
+		/* node '/soc/i2c@3ff67000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:346 */
+		i2c1: i2c@3ff67000 {
+			compatible = "espressif,esp32-i2c"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:347 */
+			#address-cells = < 0x1 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:348 */
+			#size-cells = < 0x0 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:349 */
+			reg = < 0x3ff67000 0x1000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:350 */
+			interrupts = < 0x32 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:351 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:352 */
+			clocks = < &clock 0x5 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:353 */
+			status = "disabled";                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:354 */
+		};
+
+		/* node '/soc/i2s@3ff4f000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:357 */
+		i2s0: i2s@3ff4f000 {
+			compatible = "espressif,esp32-i2s"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:358 */
+			#address-cells = < 0x1 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:359 */
+			#size-cells = < 0x0 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:360 */
+			reg = < 0x3ff4f000 0x1000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:361 */
+			interrupts = < 0x20 0x0 0x0 >,
+			             < 0x20 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:362 */
+			interrupt-names = "rx",
+			                  "tx";             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:364 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:365 */
+			clocks = < &clock 0x6 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:366 */
+			unit = < 0x0 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:367 */
+			pinctrl-0 = < &i2s0_default >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:94 */
+			pinctrl-names = "default";          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:95 */
+			status = "disabled";                /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:96 */
+		};
+
+		/* node '/soc/i2s@3ff6d000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:371 */
+		i2s1: i2s@3ff6d000 {
+			compatible = "espressif,esp32-i2s"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:372 */
+			#address-cells = < 0x1 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:373 */
+			#size-cells = < 0x0 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:374 */
+			reg = < 0x3ff6d000 0x1000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:375 */
+			interrupts = < 0x21 0x0 0x0 >,
+			             < 0x21 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:376 */
+			interrupt-names = "rx",
+			                  "tx";             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:378 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:379 */
+			clocks = < &clock 0x7 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:380 */
+			unit = < 0x1 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:381 */
+			pinctrl-0 = < &i2s1_default >;      /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:100 */
+			pinctrl-names = "default";          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:101 */
+			status = "disabled";                /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:102 */
+		};
+
+		/* node '/soc/trng@3ff75144' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:385 */
+		trng0: trng@3ff75144 {
+			compatible = "espressif,esp32-trng"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:386 */
+			reg = < 0x3ff75144 0x4 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:387 */
+			status = "okay";                     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:138 */
+		};
+
+		/* node '/soc/watchdog@3ff5f048' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:391 */
+		wdt0: watchdog@3ff5f048 {
+			compatible = "espressif,esp32-watchdog"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:392 */
+			reg = < 0x3ff5f048 0x20 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:393 */
+			interrupts = < 0x10 0x0 0x0 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:394 */
+			interrupt-parent = < &intc >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:395 */
+			clocks = < &clock 0x8 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:396 */
+			status = "okay";                         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:397 */
+		};
+
+		/* node '/soc/watchdog@3ff60048' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:400 */
+		wdt1: watchdog@3ff60048 {
+			compatible = "espressif,esp32-watchdog"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:401 */
+			reg = < 0x3ff60048 0x20 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:402 */
+			interrupts = < 0x14 0x0 0x0 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:403 */
+			interrupt-parent = < &intc >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:404 */
+			clocks = < &clock 0x9 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:405 */
+			status = "disabled";                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:406 */
+		};
+
+		/* node '/soc/spi@3ff64000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:409 */
+		spi2: spi@3ff64000 {
+			compatible = "espressif,esp32-spi"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:410 */
+			reg = < 0x3ff64000 0x1000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:411 */
+			interrupts = < 0x1e 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:412 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:413 */
+			clocks = < &clock 0x11 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:414 */
+			dma-clk = < 0x13 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:415 */
+			dma-host = < 0x0 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:416 */
+			#address-cells = < 0x1 >;           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:106 */
+			#size-cells = < 0x0 >;              /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:107 */
+			status = "okay";                    /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:108 */
+			pinctrl-0 = < &spim2_default >;     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:109 */
+			pinctrl-names = "default";          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:110 */
+		};
+
+		/* node '/soc/spi@3ff65000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:420 */
+		spi3: spi@3ff65000 {
+			compatible = "espressif,esp32-spi"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:421 */
+			reg = < 0x3ff65000 0x1000 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:422 */
+			interrupts = < 0x1f 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:423 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:424 */
+			clocks = < &clock 0x12 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:425 */
+			dma-clk = < 0x13 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:426 */
+			dma-host = < 0x1 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:427 */
+			#address-cells = < 0x1 >;           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:114 */
+			#size-cells = < 0x0 >;              /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:115 */
+			status = "okay";                    /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:116 */
+			pinctrl-0 = < &spim3_default >;     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:117 */
+			pinctrl-names = "default";          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:118 */
+		};
+
+		/* node '/soc/can@3ff6b000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:431 */
+		twai: can@3ff6b000 {
+			compatible = "espressif,esp32-twai"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:432 */
+			reg = < 0x3ff6b000 0x1000 >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:433 */
+			interrupts = < 0x2d 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:434 */
+			interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:435 */
+			clocks = < &clock 0x16 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:436 */
+			status = "disabled";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:437 */
+		};
+
+		/* node '/soc/counter@3ff5f000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:440 */
+		timer0: counter@3ff5f000 {
+			compatible = "espressif,esp32-timer"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:441 */
+			reg = < 0x3ff5f000 0x1000 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:442 */
+			clocks = < &clock 0x8 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:443 */
+			group = < 0x0 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:444 */
+			index = < 0x0 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:445 */
+			interrupts = < 0xe 0x0 0x0 >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:446 */
+			interrupt-parent = < &intc >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:447 */
+			status = "disabled";                  /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:122 */
+
+			/* node '/soc/counter@3ff5f000/counter' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:450 */
+			counter {
+				compatible = "espressif,esp32-counter"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:451 */
+				status = "disabled";                    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:452 */
+			};
+		};
+
+		/* node '/soc/counter@3ff5f024' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:456 */
+		timer1: counter@3ff5f024 {
+			compatible = "espressif,esp32-timer"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:457 */
+			reg = < 0x3ff5f024 0x1000 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:458 */
+			clocks = < &clock 0x8 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:459 */
+			group = < 0x0 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:460 */
+			index = < 0x1 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:461 */
+			interrupts = < 0xf 0x0 0x0 >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:462 */
+			interrupt-parent = < &intc >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:463 */
+			status = "disabled";                  /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:126 */
+
+			/* node '/soc/counter@3ff5f024/counter' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:466 */
+			counter {
+				compatible = "espressif,esp32-counter"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:467 */
+				status = "disabled";                    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:468 */
+			};
+		};
+
+		/* node '/soc/counter@3ff60000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:472 */
+		timer2: counter@3ff60000 {
+			compatible = "espressif,esp32-timer"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:473 */
+			reg = < 0x3ff60000 0x1000 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:474 */
+			clocks = < &clock 0x9 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:475 */
+			group = < 0x1 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:476 */
+			index = < 0x0 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:477 */
+			interrupts = < 0x12 0x0 0x0 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:478 */
+			interrupt-parent = < &intc >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:479 */
+			status = "disabled";                  /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:130 */
+
+			/* node '/soc/counter@3ff60000/counter' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:482 */
+			counter {
+				compatible = "espressif,esp32-counter"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:483 */
+				status = "disabled";                    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:484 */
+			};
+		};
+
+		/* node '/soc/counter@3ff60024' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:488 */
+		timer3: counter@3ff60024 {
+			compatible = "espressif,esp32-timer"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:489 */
+			reg = < 0x3ff60024 0x1000 >;          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:490 */
+			clocks = < &clock 0x9 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:491 */
+			group = < 0x1 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:492 */
+			index = < 0x1 >;                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:493 */
+			interrupts = < 0x13 0x0 0x0 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:494 */
+			interrupt-parent = < &intc >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:495 */
+			status = "disabled";                  /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:134 */
+
+			/* node '/soc/counter@3ff60024/counter' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:498 */
+			counter {
+				compatible = "espressif,esp32-counter"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:499 */
+				status = "disabled";                    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:500 */
+			};
+		};
+
+		/* node '/soc/dac@3ff48800' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:504 */
+		dac: dac@3ff48800 {
+			compatible = "espressif,esp32-dac"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:505 */
+			reg = < 0x3ff48800 0x100 >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:506 */
+			interrupts = < 0x2e 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:507 */
+			interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:508 */
+			clocks = < &clock 0x21 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:509 */
+			#io-channel-cells = < 0x1 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:510 */
+			status = "disabled";                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:511 */
+		};
+
+		/* node '/soc/adc@3ff48800' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:514 */
+		adc0: adc@3ff48800 {
+			compatible = "espressif,esp32-adc"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:515 */
+			reg = < 0x3ff48800 0xa >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:516 */
+			clocks = < &clock 0x21 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:517 */
+			unit = < 0x1 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:518 */
+			channel-count = < 0x8 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:519 */
+			#io-channel-cells = < 0x1 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:520 */
+			status = "disabled";                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:521 */
+		};
+
+		/* node '/soc/adc@3ff48890' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:524 */
+		adc1: adc@3ff48890 {
+			compatible = "espressif,esp32-adc"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:525 */
+			reg = < 0x3ff48890 0xa >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:526 */
+			clocks = < &clock 0x21 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:527 */
+			unit = < 0x2 >;                     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:528 */
+			channel-count = < 0xa >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:529 */
+			#io-channel-cells = < 0x1 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:530 */
+			status = "disabled";                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:531 */
+		};
+
+		/* node '/soc/sdhc@3ff68000' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:534 */
+		sdhc: sdhc@3ff68000 {
+			compatible = "espressif,esp32-sdhc"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:535 */
+			reg = < 0x3ff68000 0x1000 >;         /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:536 */
+			interrupts = < 0x25 0x0 0x0 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:537 */
+			interrupt-parent = < &intc >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:538 */
+			clocks = < &clock 0x14 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:539 */
+			#address-cells = < 0x1 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:540 */
+			#size-cells = < 0x0 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:541 */
+
+			/* node '/soc/sdhc@3ff68000/sdhc@0' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:543 */
+			sdhc0: sdhc@0 {
+				compatible = "espressif,esp32-sdhc-slot"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:544 */
+				reg = < 0x0 >;                            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:545 */
+				status = "disabled";                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:546 */
+			};
+
+			/* node '/soc/sdhc@3ff68000/sdhc@1' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:549 */
+			sdhc1: sdhc@1 {
+				compatible = "espressif,esp32-sdhc-slot"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:550 */
+				reg = < 0x1 >;                            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:551 */
+				status = "disabled";                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:552 */
+			};
+		};
+	};
+
+	/* node '/cpus' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:26 */
+	cpus {
+		#address-cells = < 0x1 >; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:27 */
+		#size-cells = < 0x0 >;    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:28 */
+
+		/* node '/cpus/cpu@0' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:30 */
+		cpu0: cpu@0 {
+			device_type = "cpu";                             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:31 */
+			compatible = "espressif,xtensa-lx6";             /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:32 */
+			reg = < 0x0 >;                                   /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:33 */
+			cpu-power-states = < &light_sleep &deep_sleep >; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:34 */
+			clock-source = < 0x1 >;                          /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:35 */
+			clock-frequency = < 0xe4e1c00 >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:36 */
+			xtal-freq = < 0x2625a00 >;                       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:37 */
+		};
+
+		/* node '/cpus/cpu@1' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:40 */
+		cpu1: cpu@1 {
+			device_type = "cpu";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:41 */
+			compatible = "espressif,xtensa-lx6"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:42 */
+			reg = < 0x1 >;                       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:43 */
+			clock-source = < 0x1 >;              /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:44 */
+			clock-frequency = < 0xe4e1c00 >;     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:45 */
+			xtal-freq = < 0x2625a00 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:46 */
+		};
+
+		/* node '/cpus/power-states' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:49 */
+		power-states {
+
+			/* node '/cpus/power-states/light_sleep' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:50 */
+			light_sleep: light_sleep {
+				compatible = "zephyr,power-state"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:51 */
+				power-state-name = "standby";      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:52 */
+				min-residency-us = < 0xc8 >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:53 */
+				exit-latency-us = < 0x3c >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:54 */
+				phandle = < 0xe >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:34 */
+			};
+
+			/* node '/cpus/power-states/deep_sleep' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:57 */
+			deep_sleep: deep_sleep {
+				compatible = "zephyr,power-state"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:58 */
+				power-state-name = "soft-off";     /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:59 */
+				min-residency-us = < 0x7d0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:60 */
+				exit-latency-us = < 0xd4 >;        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:61 */
+				phandle = < 0xf >;                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:34 */
+			};
+		};
+	};
+
+	/* node '/wifi' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:66 */
+	wifi: wifi {
+		compatible = "espressif,esp32-wifi"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:67 */
+		status = "okay";                     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:146 */
+	};
+
+	/* node '/esp32_bt_hci' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:71 */
+	esp32_bt_hci: esp32_bt_hci {
+		compatible = "espressif,esp32-bt-hci"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:72 */
+		status = "okay";                       /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:142 */
+	};
+
+	/* node '/eth' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:76 */
+	eth: eth {
+		compatible = "espressif,esp32-eth"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:77 */
+		interrupts = < 0x26 0x0 0x0 >;      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:78 */
+		interrupt-parent = < &intc >;       /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:79 */
+		clocks = < &clock 0x17 >;           /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:80 */
+		status = "disabled";                /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:81 */
+	};
+
+	/* node '/mdio' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:84 */
+	mdio: mdio {
+		compatible = "espressif,esp32-mdio"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:85 */
+		clocks = < &clock 0x17 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:86 */
+		status = "disabled";                 /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:87 */
+		#address-cells = < 0x1 >;            /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:88 */
+		#size-cells = < 0x0 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:89 */
+	};
+
+	/* node '/pin-controller' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:92 */
+	pinctrl: pin-controller {
+		compatible = "espressif,esp32-pinctrl"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:93 */
+		status = "okay";                        /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:94 */
+
+		/* node '/pin-controller/uart0_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:12 */
+		uart0_default: uart0_default {
+			phandle = < 0x4 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:48 */
+
+			/* node '/pin-controller/uart0_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:13 */
+			group1 {
+				pinmux = < 0x77fc1 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:14 */
+				output-high;          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:15 */
+			};
+
+			/* node '/pin-controller/uart0_default/group2' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:18 */
+			group2 {
+				pinmux = < 0xff8383 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:19 */
+				bias-pull-up;          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:20 */
+			};
+		};
+
+		/* node '/pin-controller/uart1_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:24 */
+		uart1_default: uart1_default {
+			phandle = < 0x5 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:54 */
+
+			/* node '/pin-controller/uart1_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:25 */
+			group1 {
+				pinmux = < 0x8ffca >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:26 */
+			};
+
+			/* node '/pin-controller/uart1_default/group2' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:29 */
+			group2 {
+				pinmux = < 0xff8449 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:30 */
+				bias-pull-up;          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:31 */
+			};
+		};
+
+		/* node '/pin-controller/uart2_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:35 */
+		uart2_default: uart2_default {
+			phandle = < 0x6 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:60 */
+
+			/* node '/pin-controller/uart2_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:36 */
+			group1 {
+				pinmux = < 0x637fd1 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:37 */
+			};
+
+			/* node '/pin-controller/uart2_default/group2' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:40 */
+			group2 {
+				pinmux = < 0xffb190 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:41 */
+				bias-pull-up;          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:42 */
+			};
+		};
+
+		/* node '/pin-controller/spim2_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:46 */
+		spim2_default: spim2_default {
+			phandle = < 0xc >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:109 */
+
+			/* node '/pin-controller/spim2_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:47 */
+			group1 {
+				pinmux = < 0xff824c >,
+				         < 0x47fce >,
+				         < 0x5ffcf >;  /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:48 */
+			};
+
+			/* node '/pin-controller/spim2_default/group2' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:53 */
+			group2 {
+				pinmux = < 0x57fcd >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:54 */
+				output-low;           /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:55 */
+			};
+		};
+
+		/* node '/pin-controller/spim3_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:59 */
+		spim3_default: spim3_default {
+			phandle = < 0xd >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:117 */
+
+			/* node '/pin-controller/spim3_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:60 */
+			group1 {
+				pinmux = < 0xff9013 >,
+				         < 0x1fffd2 >,
+				         < 0x227fc5 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:61 */
+			};
+
+			/* node '/pin-controller/spim3_default/group2' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:66 */
+			group2 {
+				pinmux = < 0x20ffd7 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:67 */
+				output-low;            /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:68 */
+			};
+		};
+
+		/* node '/pin-controller/i2c0_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:72 */
+		i2c0_default: i2c0_default {
+			phandle = < 0x9 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:89 */
+
+			/* node '/pin-controller/i2c0_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:73 */
+			group1 {
+				pinmux = < 0xf0795 >,
+				         < 0xe8756 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:74 */
+				bias-pull-up;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:76 */
+				drive-open-drain;     /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:77 */
+				output-high;          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:78 */
+			};
+		};
+
+		/* node '/pin-controller/i2s0_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:82 */
+		i2s0_default: i2s0_default {
+			phandle = < 0xa >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:94 */
+
+			/* node '/pin-controller/i2s0_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:83 */
+			group1 {
+				pinmux = < 0xc8645 >,
+				         < 0xb85c6 >,
+				         < 0x51ffc7 >,
+				         < 0xe070f >,
+				         < 0xd86d0 >;  /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:84 */
+				output-enable;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:89 */
+			};
+
+			/* node '/pin-controller/i2s0_default/group2' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:92 */
+			group2 {
+				pinmux = < 0xffa6d1 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:93 */
+				input-enable;          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:94 */
+			};
+		};
+
+		/* node '/pin-controller/i2s1_default' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:98 */
+		i2s1_default: i2s1_default {
+			phandle = < 0xb >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:100 */
+
+			/* node '/pin-controller/i2s1_default/group1' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:99 */
+			group1 {
+				pinmux = < 0xd0688 >,
+				         < 0xc0603 >,
+				         < 0x5effc9 >,
+				         < 0x52a94a >,
+				         < 0x52290b >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:100 */
+				output-enable;         /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:105 */
+			};
+
+			/* node '/pin-controller/i2s1_default/group2' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:108 */
+			group2 {
+				pinmux = < 0xffad4c >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:109 */
+				input-enable;          /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc-pinctrl.dtsi:110 */
+			};
+		};
+	};
+
+	/* node '/clock' defined in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:97 */
+	clock: clock {
+		compatible = "espressif,esp32-clock"; /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:98 */
+		fast-clk-src = < 0x1 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:99 */
+		slow-clk-src = < 0x0 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:100 */
+		#clock-cells = < 0x1 >;               /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:101 */
+		status = "okay";                      /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:102 */
+		phandle = < 0x3 >;                    /* in zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi:192 */
+	};
+
+	/* node '/buttons' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:25 */
+	buttons {
+		compatible = "gpio-keys";        /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:15 */
+		debounce-interval-ms = < 0x32 >; /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:16 */
+		polling-mode;                    /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:17 */
+
+		/* node '/buttons/button_0' defined in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:28 */
+		button0: button_0 {
+			gpios = < &gpio0 0x0 0x11 >; /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:29 */
+			label = "BOOT Button";       /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:30 */
+			zephyr,code = < 0xb >;       /* in zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts:31 */
+		};
+
+		/* node '/buttons/d5' defined in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:19 */
+		button_1: d5 {
+			gpios = < &gpio0 0x5 0x11 >; /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:20 */
+		};
+	};
+
+	/* node '/leds' defined in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:7 */
+	leds {
+		compatible = "gpio-leds"; /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:8 */
+
+		/* node '/leds/d13' defined in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:9 */
+		led0: d13 {
+			gpios = < &gpio0 0x2 0x0 >; /* in zephyr/apps/01_blink/build/zephyr/boards/esp32_devkitc_wroom.overlay:10 */
+		};
+	};
+};

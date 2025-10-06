@@ -1,0 +1,80 @@
+/ {
+    aliases{
+        my-led = &led0;
+        my-button = &button_1;
+
+        my-adc = &adc0;
+        my-adc-channel = &adc0_ch2;
+    };
+
+    app{
+        compatible = "app,config";
+        sample-interval-ms = <3000>;
+        voltage-threshold-mv = <3300>;
+        enable-ble;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+        led0: d1 {
+            gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+        };
+    };
+
+    buttons {
+        compatible = "gpio-keys";
+        //debounce-interval-ms = <1000>;
+        //polling-mode;
+
+        button_1: d3 {
+            gpios = <&gpio0 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        };
+    };
+
+    pwmleds {
+        compatible = "pwm-leds";
+        pwm_led: pwm_led {
+            pwms = <&ledc0 0 10000 0>;
+        };
+    };
+
+    
+};
+
+// ADC1 (adc0) channel 0 is connected to GPIO1
+&adc0 {
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    adc0_ch2: channel@2 {
+        reg = <2>;
+        zephyr,gain = "ADC_GAIN_1_4";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,vref-mv = <3894>;
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,resolution = <12>;
+    };
+};
+
+&pinctrl {
+    ledc0_default: ledc0_default{
+        group1{
+            pinmux = <LEDC_CH0_GPIO4>;
+            output-enable;
+        };
+    };
+};
+
+&ledc0 {
+    pinctrl-0 = <&ledc0_default>;
+    pinctrl-names = "default";
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+    channel0@0 {
+        reg = <0x0>;
+        timer = <0>;
+    };
+};
+

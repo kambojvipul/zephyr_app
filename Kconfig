@@ -1,0 +1,26 @@
+mainmenu "Customized Mainmenu"
+
+source "Kconfig.zephyr"
+
+menu "FW Challenge Options"
+
+config APP_SAMPLE_INTERVAL_MS
+    int "Sample Interval (ms)"
+    default 2000
+    help
+      This option provide internal ms.
+
+config APP_ENABLE_BLE
+    bool "Enable BLE"
+    default n
+    help
+      Enable BLE.
+
+config APP_LED_ACTIVE_LOW
+    bool "LED Active Low"
+    default y
+    help
+      Set the Active Low.
+
+endmenu
+
